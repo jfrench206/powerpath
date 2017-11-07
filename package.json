@@ -1,0 +1,12 @@
+{
+  "name"		: "powerpath",
+  "version"		: "0.0.1",
+  "description"	: "Scrape the web.",
+  "main"		: "server.js",
+  "author"		: "Jfrench via Scotch",
+  "dependencies": {
+  	"express" 	: "latest",
+  	"request"	: "latest",
+  	"cheerio" 	: "latest"
+  }
+}
