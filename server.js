@@ -24,43 +24,42 @@ app.get('/scrape', function(req, res){
 
 	url = "https://thepowerpath.com/monthly-forecast/" + thisMonth.toLowerCase() + "-" + thisYear + "-monthly-forecast/";
 
-request(url, function(error, response, html){
-    if(!error){
-        var $ = cheerio.load(html);
-        console.log("Cheerio loaded");
+	request(url, function(error, response, html){
+    	if(!error){
+        	var $ = cheerio.load(html);
 
-		// find matching string and store (not fully functional)
-    	datesAndTimeFrames = $('p').filter('DATES AND TIME FRAMES');
-    	console.log(datesAndTimeFrames);
-    	}
-});
+			// find matching string and store (not fully functional)
+    		var myText = $('p').filter('strong').text();
+    		datesAndTimeFrames = myText;
+		};
+	});
 
-// send email with the data
-var transporter = nodemailer.createTransport({
-  secure: false,
-  host: "***REMOVED***",
-  auth: {
-    user: '***REMOVED***',
-    pass: '***REMOVED***'
-  }
-});
+	// send email with the data
+	var transporter = nodemailer.createTransport({
+  		secure: false,
+  		host: "***REMOVED***",
+ 	 	auth: {
+   	 		user: '***REMOVED***',
+   	 		pass: '***REMOVED***'
+  		}
+	});
 
-var mailOptions = {
-  from: '***REMOVED***',
-  to: '***REMOVED***',
-  subject: thisMonth + " " + thisYear + ': Dates and Time Frames',
-  text: datesAndTimeFrames
-};
+	var mailOptions = {
+  		from: '***REMOVED***',
+  		to: '***REMOVED***',
+  		subject: thisMonth + " " + thisYear + ': Dates and Time Frames',
+  		text: datesAndTimeFrames
+	};
 
-transporter.sendMail(mailOptions, function(error, info){
-  if (error) {
-    console.log(error);
-  } else {
-    console.log('Email sent: ' + info.response);
-  }
-});
+	transporter.sendMail(mailOptions, function(error, info){
+  		if (error) {
+    		console.log(error);
+  		} else {
+    		console.log('Email sent: ' + info.response);
+  		}
+	});
 
-res.send('It is done.');
+	res.send("It is done.");
 
 });
 
