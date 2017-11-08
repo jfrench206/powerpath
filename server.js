@@ -17,6 +17,7 @@ var today = new Date();
 var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 var thisMonth = months[today.getMonth()];
 var thisYear = today.getFullYear();
+var datesAndTimeFrames = "init";
 
 
 // perform web scrape with Express
@@ -28,24 +29,27 @@ request(url, function(error, response, html){
     if(!error){
         var $ = cheerio.load(html);
 
-    var title, release, rating;
-    var json = { title : "", release : "", rating : ""};
+//    var title, release, rating;
+//    var json = { title : "", release : "", rating : ""};
 
-    $('.header').filter(function(){
+    $('strong').filter(function(){
+    	//stores filtered data into a variable
         var data = $(this);
-        title = data.children().first().text();
-        release = data.children().last().children().text();
+        console.log(data);
+        datesAndTimeFrames = data;
+//        title = data.children().first().text();
+//        release = data.children().last().children().text();
 
-        json.title = title;
-        json.release = release;
+//        json.title = title;
+//        json.release = release;
     })
 
-    $('.star-box-giga-star').filter(function(){
-        var data = $(this);
-        rating = data.text();
+//    $('.star-box-giga-star').filter(function(){
+//        var data = $(this);
+//        rating = data.text();
 
-        json.rating = rating;
-    })
+//        json.rating = rating;
+//    })
 }
 
 // To write to the system we will use the built in 'fs' library.
@@ -65,7 +69,7 @@ var transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
     user: '***REMOVED***',
-    pass: 'yourpassword'
+    pass: 'super980'
   }
 });
 
@@ -86,7 +90,7 @@ transporter.sendMail(mailOptions, function(error, info){
 
 
 // Finally, we'll just send out a message to the browser reminding you that this app does not have a UI.
-res.send('Check your console!')
+res.send('Check console')
 
     }) ;
 })
