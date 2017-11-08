@@ -26,19 +26,23 @@ var thisYear = today.getFullYear();
 var datesAndTimeFrames = "init";
 
 
-// perform web scrape with Express
+// setup path with Express
 app.get('/scrape', function(req, res){
 
 	url = "https://thepowerpath.com/monthly-forecast/" + thisMonth.toLowerCase() + "-" + thisYear + "-monthly-forecast/";
 
-	request(url, function(error, response, html){
+	var someText = request(url, function(error, response, html){
     	if(!error){
         	var $ = cheerio.load(html);
 
+        	var myArray = [];
 			// find matching string and store (not fully functional)
-    		var myText = $('strong').text();
-    		datesAndTimeFrames = myText;
-    		console.log(datesAndTimeFrames);
+			var myText = $('p').text(); // getting closer - finds all the <p> elements and logs them
+    	//	var myText = $('p').each(function(i,elem){
+    	//		return $.html();
+       	//	});
+    		console.log(myText);
+    		// return myText;
 		};
 	});
 
@@ -58,6 +62,8 @@ app.get('/scrape', function(req, res){
   		subject: thisMonth + " " + thisYear + ': Dates and Time Frames',
   		text: datesAndTimeFrames
 	};
+
+	// console.log("datesAndTimeFrames outside: " + datesAndTimeFrames);
 
 // temp commented out, uncomment when ready to send email!
 //	transporter.sendMail(mailOptions, function(error, info){
