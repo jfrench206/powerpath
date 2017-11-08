@@ -3,6 +3,13 @@
 //
 // This code scrapes the Power Path website, parses to extract the Dates and Time Frames weekly breakdown,
 // and sends it to myself in an email.
+//
+// Todo:
+// solve scope issue for datesAndTimeFrames variable
+// figure out how to get the data I'm looking for
+// make it go without pageload
+// separate email auth into separate file, untracked by git, for secure project sharing
+
 
 
 var express = require('express');
@@ -29,8 +36,9 @@ app.get('/scrape', function(req, res){
         	var $ = cheerio.load(html);
 
 			// find matching string and store (not fully functional)
-    		var myText = $('p').filter('strong').text();
+    		var myText = $('strong').text();
     		datesAndTimeFrames = myText;
+    		console.log(datesAndTimeFrames);
 		};
 	});
 
@@ -51,13 +59,14 @@ app.get('/scrape', function(req, res){
   		text: datesAndTimeFrames
 	};
 
-	transporter.sendMail(mailOptions, function(error, info){
-  		if (error) {
-    		console.log(error);
-  		} else {
-    		console.log('Email sent: ' + info.response);
-  		}
-	});
+// temp commented out, uncomment when ready to send email!
+//	transporter.sendMail(mailOptions, function(error, info){
+//  		if (error) {
+ //   		console.log(error);
+ // 		} else {
+  //  		console.log('Email sent: ' + info.response);
+  //		}
+//	});
 
 	res.send("It is done.");
 
