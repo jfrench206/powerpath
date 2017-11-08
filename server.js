@@ -24,10 +24,12 @@ var datesAndTimeFrames = "init";
 app.get('/scrape', function(req, res){
 
 	url = "https://thepowerpath.com/monthly-forecast/" + thisMonth.toLowerCase() + "-" + thisYear + "-monthly-forecast/";
+console.log(url);
 
 request(url, function(error, response, html){
     if(!error){
         var $ = cheerio.load(html);
+        console.log("Cheerio loaded");
 
 //    var title, release, rating;
 //    var json = { title : "", release : "", rating : ""};
@@ -37,6 +39,7 @@ request(url, function(error, response, html){
         var data = $(this);
         console.log(data);
         datesAndTimeFrames = data;
+        console.log(datesAndTimeFrames);
 //        title = data.children().first().text();
 //        release = data.children().last().children().text();
 
@@ -66,10 +69,11 @@ request(url, function(error, response, html){
 // send email with the data
 
 var transporter = nodemailer.createTransport({
-  service: 'gmail',
+  secure: false,
+  host: "***REMOVED***",
   auth: {
     user: '***REMOVED***',
-    pass: 'super980'
+    pass: '***REMOVED***'
   }
 });
 
