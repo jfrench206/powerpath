@@ -4,12 +4,12 @@
 // This code scrapes the Power Path website, parses to extract the Dates and Time Frames weekly breakdown,
 // and sends it to myself in an email.
 //
-// Todo:
+// TODO:
 // solve scope issue for datesAndTimeFrames variable
-// figure out how to get the data I'm looking for
-// make it go without pageload
+// figure out how to get the data I'm looking for (how to parse the DOM)
+// make the code here go without pageload
 // separate email auth into separate file, untracked by git, for secure project sharing
-
+// share on Github once my personal email & pass are removed
 
 
 var express = require('express');
