@@ -11,15 +11,13 @@
 // share on Github once my personal email & pass are removed
 
 
-var express = require('express');
 var request = require('request');
 var cheerio = require('cheerio');
 var nodemailer = require('nodemailer');
-//var app     = express();
 
-// setup path with Express
-// app.get('/scrape', function(req, res){
+doScrape();
 
+function doScrape(){
 	//variables for use in the http GET and the email subject
 	var today = new Date();
 	var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -39,45 +37,37 @@ var nodemailer = require('nodemailer');
 						myArray[i] = $(this).html();
 					});
 
-				//	myArray.join();
-
-					sendMail(myArray.join());
+					sendMail(myArray.join(), thisMonth, thisYear);
 			};
 	});
 
 	// send email with the data
-	function sendMail(body){
+	function sendMail(body, month, year){
 		var transporter = nodemailer.createTransport({
-  		secure: false,
-  		host: "***REMOVED***",
- 	 	auth: {
-   	 		user: '***REMOVED***',
-   	 		pass: '***REMOVED***'
-  		}
-	});
+			secure: false,
+			host: "***REMOVED***",
+	 		auth: {
+ 	 			user: '***REMOVED***',
+ 	 			pass: '***REMOVED***'
+			}
+		});
 
-	var mailOptions = {
+		var mailOptions = {
   		from: '***REMOVED***',
   		to: '***REMOVED***',
-  		subject: thisMonth + " " + thisYear + ': Dates and Time Frames',
+  		subject: month + " " + year + ': Dates and Time Frames',
   		text: body
-	};
+		};
 
 	// send the email
-	transporter.sendMail(mailOptions, function(error, info){
- 		if (error) {
-   		console.log(error);
- 		} else {
-   		console.log('Email sent: ' + info.response);
-  		}
-	});
+		transporter.sendMail(mailOptions, function(error, info){
+ 			if (error) {
+   			console.log(error);
+ 			} else {
+   			console.log('Email sent: ' + info.response);
+  		};
+		});
+	};
+
+	console.log("Waiting for email to send...");
 };
-
-console.log("Waiting for email to send...");
-//	res.send("It is done.");
-
-// });
-
-//app.listen('8081');
-//console.log('Magic happens on port 8081');
-//exports = module.exports = app;
