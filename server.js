@@ -6,7 +6,7 @@
 //
 // TODO:
 // figure out how to pass data to email as HTML, not string
-// make the code here go without pageload
+// move global variables -> local
 // separate email auth into separate file, untracked by git, for secure project sharing
 // share on Github once my personal email & pass are removed
 
@@ -15,10 +15,10 @@ var express = require('express');
 var request = require('request');
 var cheerio = require('cheerio');
 var nodemailer = require('nodemailer');
-var app     = express();
+//var app     = express();
 
 // setup path with Express
-app.get('/scrape', function(req, res){
+// app.get('/scrape', function(req, res){
 
 	//variables for use in the http GET and the email subject
 	var today = new Date();
@@ -73,10 +73,11 @@ app.get('/scrape', function(req, res){
 	});
 };
 
-	res.send("It is done.");
+console.log("Waiting for email to send...");
+//	res.send("It is done.");
 
-});
+// });
 
-app.listen('8081');
-console.log('Magic happens on port 8081');
-exports = module.exports = app;
+//app.listen('8081');
+//console.log('Magic happens on port 8081');
+//exports = module.exports = app;
