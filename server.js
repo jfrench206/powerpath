@@ -18,16 +18,15 @@ var cheerio = require('cheerio');
 var nodemailer = require('nodemailer');
 var app     = express();
 
-//some global variables for use in the http GET and the email subject
-var today = new Date();
-var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-var thisMonth = months[today.getMonth()];
-var thisYear = today.getFullYear();
-var datesAndTimeFrames = "init";
-
-
 // setup path with Express
 app.get('/scrape', function(req, res){
+
+	//variables for use in the http GET and the email subject
+	var today = new Date();
+	var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+	var thisMonth = months[today.getMonth()];
+	var thisYear = today.getFullYear();
+	var datesAndTimeFrames = "";
 
 	url = "https://thepowerpath.com/monthly-forecast/" + thisMonth.toLowerCase() + "-" + thisYear + "-monthly-forecast/";
 
@@ -37,11 +36,10 @@ app.get('/scrape', function(req, res){
 
         	var myArray = [];
 			// find matching string and store (not fully functional)
-			var myText = $('p').text(); // getting closer - finds all the <p> elements and logs them
-    	//	var myText = $('p').each(function(i,elem){
-    	//		return $.html();
-       	//	});
-    		console.log(myText);
+			datesAndTimeFrames = $('p:contains("DATES AND TIME FRAMES")').text(); // YES it works!
+			// now, to figure out how to select everything after this element, until the <hr>
+
+    		console.log(datesAndTimeFrames);
     		// return myText;
 		};
 	});
