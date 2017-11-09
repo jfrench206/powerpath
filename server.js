@@ -5,7 +5,7 @@
 // and sends it to myself in an email.
 //
 // TODO:
-// figure out how to get the data I'm looking for (how to parse the DOM)
+// figure out how to pass data to email as HTML, not string
 // make the code here go without pageload
 // separate email auth into separate file, untracked by git, for secure project sharing
 // share on Github once my personal email & pass are removed
@@ -29,22 +29,25 @@ app.get('/scrape', function(req, res){
 
 	url = "https://thepowerpath.com/monthly-forecast/" + thisMonth.toLowerCase() + "-" + thisYear + "-monthly-forecast/";
 
-	var someText = request(url, function(error, response, html){
+	request(url, function(error, response, html){
     	if(!error){
         	var $ = cheerio.load(html);
 
-        	var myArray = [];
-			// find matching string and store (not fully functional)
-			datesAndTimeFrames = $('p:contains("DATES AND TIME FRAMES")').text(); // YES it works!
-			// now, to figure out how to select everything after this element, until the <hr>
+					var myArray = [];
+					// find matching string and store (not fully functional)
+					$('p:contains("DATES AND TIME FRAMES")').nextUntil("hr").each(function(i,elem){
+						myArray[i] = $(this).html();
+					});
 
-    		console.log(datesAndTimeFrames);
-    		// return myText;
-		};
+				//	myArray.join();
+
+					sendMail(myArray.join());
+			};
 	});
 
 	// send email with the data
-	var transporter = nodemailer.createTransport({
+	function sendMail(body){
+		var transporter = nodemailer.createTransport({
   		secure: false,
   		host: "***REMOVED***",
  	 	auth: {
@@ -57,19 +60,18 @@ app.get('/scrape', function(req, res){
   		from: '***REMOVED***',
   		to: '***REMOVED***',
   		subject: thisMonth + " " + thisYear + ': Dates and Time Frames',
-  		text: datesAndTimeFrames
+  		text: body
 	};
 
-	// console.log("datesAndTimeFrames outside: " + datesAndTimeFrames);
-
-// temp commented out, uncomment when ready to send email!
-//	transporter.sendMail(mailOptions, function(error, info){
-//  		if (error) {
- //   		console.log(error);
- // 		} else {
-  //  		console.log('Email sent: ' + info.response);
-  //		}
-//	});
+	// send the email
+	transporter.sendMail(mailOptions, function(error, info){
+ 		if (error) {
+   		console.log(error);
+ 		} else {
+   		console.log('Email sent: ' + info.response);
+  		}
+	});
+};
 
 	res.send("It is done.");
 
