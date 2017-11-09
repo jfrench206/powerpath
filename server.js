@@ -6,7 +6,6 @@
 //
 // TODO:
 // figure out how to pass data to email as HTML, not string
-// move global variables -> local
 // separate email auth into separate file, untracked by git, for secure project sharing
 // share on Github once my personal email & pass are removed
 
