@@ -12,6 +12,7 @@
 var request = require('request');
 var cheerio = require('cheerio');
 var nodemailer = require('nodemailer');
+var creds = require('./credentials.js');
 
 doScrape();
 
@@ -45,20 +46,20 @@ function doScrape(){ // does some date calculations, makes HTTP request and pars
 	});
 };
 
-// configures and sends email
+// configures and sends email - references credentials.js file for user auth and host
 function sendMail(body, month, year){
 	var transporter = nodemailer.createTransport({
 		secure: false,
-		host: "***REMOVED***",
+		host: creds.host,
  		auth: {
-	 			user: '***REMOVED***',
-	 			pass: '***REMOVED***'
+	 			user: creds.user,
+	 			pass: creds.pass
 		}
 	});
 
 	var mailOptions = {
-		from: '***REMOVED***',
-		to: '***REMOVED***',
+		from: creds.from,
+		to: creds.to,
 		subject: month + " " + year + ': Dates and Time Frames',
 		html: body
 	};
