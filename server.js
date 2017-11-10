@@ -1,18 +1,17 @@
 // original example code from https://scotch.io/tutorials/scraping-the-web-with-node-js
-// modified by Jesse French
+// modified by Jesse French - ***REMOVED***
 //
 // This code scrapes the Power Path website, parses to extract the Dates and Time Frames weekly breakdown,
-// and sends it to myself in an email.
-//
-// TODO:
-// separate email auth into separate file, untracked by git, for secure project sharing
-// share on Github once my personal email & pass are removed
+// and sends it in an email.
 
 
 var request = require('request');
 var cheerio = require('cheerio');
 var nodemailer = require('nodemailer');
-var creds = require('./credentials.js');
+var creds = require('./credentials.js'); // pull email username, password, etc from separate file
+
+// message while other functions execute
+console.log("Waiting for email to send...");
 
 doScrape();
 
@@ -73,6 +72,3 @@ function sendMail(body, month, year){
   		};
 	});
 };
-
-// message while other functions execute
-console.log("Waiting for email to send...");
