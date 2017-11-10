@@ -5,14 +5,16 @@
 // and sends it to myself in an email.
 //
 // TODO:
-// separate email auth into separate file, untracked by git, for secure project sharing
 // share on Github once my personal email & pass are removed
 
 
 var request = require('request');
 var cheerio = require('cheerio');
 var nodemailer = require('nodemailer');
-var creds = require('./credentials.js');
+var creds = require('./credentials.js'); // email username, password, etc stored in separate file
+
+// message while other functions execute
+console.log("Waiting for email to send...");
 
 doScrape();
 
@@ -73,6 +75,3 @@ function sendMail(body, month, year){
   		};
 	});
 };
-
-// message while other functions execute
-console.log("Waiting for email to send...");
