@@ -8,7 +8,7 @@
 var request = require('request');
 var cheerio = require('cheerio');
 var nodemailer = require('nodemailer');
-var creds = require('./credentials.js'); // pull email username, password, etc from separate file
+var creds = require('./credentials.js'); // email username, password, etc stored in separate file
 
 // message while other functions execute
 console.log("Waiting for email to send...");
@@ -72,3 +72,6 @@ function sendMail(body, month, year){
   		};
 	});
 };
+
+// message while other functions execute
+console.log("Waiting for email to send...");
