@@ -73,5 +73,5 @@ function sendMail(body, month, year){
 	});
 };
 
-// message while other functions execute
-console.log("Waiting for email to send...");
+
+
