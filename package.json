@@ -1,11 +1,10 @@
 {
   "name"		: "powerpath",
-  "version"		: "0.0.1",
-  "description"	: "Scrape the web.",
+  "version"		: "1.0.0",
+  "description"	: "Scrape monthly horoscopes and email them.",
   "main"		: "server.js",
-  "author"		: "Jfrench via Scotch",
+  "author"		: "Jesse French",
   "dependencies": {
-  	"express" 	: "latest",
   	"request"	: "latest",
   	"cheerio" 	: "latest",
     "nodemailer" : "latest"
