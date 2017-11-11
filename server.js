@@ -1,5 +1,5 @@
 // original example code from https://scotch.io/tutorials/scraping-the-web-with-node-js
-// modified by Jesse French - ***REMOVED***
+// modified by Jesse French
 //
 // This code scrapes the Power Path website, parses to extract the Dates and Time Frames weekly breakdown,
 // and sends it in an email.
