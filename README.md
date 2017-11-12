@@ -14,11 +14,10 @@ It uses Cheerio (basically jQuery) to find the "Dates and Time Frames" section o
 From your local directory where you want to install, run:
 
 ```
-git clone https://github.com/jfrench206/powerpath/
-npm install
+$ git clone https://github.com/jfrench206/powerpath/ && npm install
 ```
 
-Npm should find the package.json file and automatically install dependencies.
+Npm should automatically install dependencies, based on the included package.json file.
 
 ### Running
 
@@ -26,15 +25,23 @@ Before running, you need to edit the credentials.js file to include an SMTP host
 
 Once that's done, run
 ```
-node server.js
+$ node server.js
 ```
 
-If all goes well, you should get a confirmation like
+If all goes well, you should get a confirmation like this:
 ```
 Email sent: 250 2.6.0 <string@exampleemail.com> [data about SMTP server] 8262 bytes in 0.471, 17.123 KB/sec Queued mail for delivery
 ```
 
+Finally, edit your crontab file to make this script run at the beginning of each month.
+```
+$ vi /./etc/crontab
 
+# Add the below line just before the last hashtag of the file - sets it to run at 11:52am on the 2nd of every month:
+52 11   2 * *   [your username] cd ~/powerpath/ && node server.js
+```
+
+Note: I have yet to test the cron job for proper function - we'll see on Dec 2nd!
 
 ## Authors
 
