@@ -21,7 +21,7 @@ Npm should automatically install dependencies, based on the included package.jso
 
 ### Running
 
-Before running, you need to edit the credentials.js file to include an SMTP host, the login and password for that host, and the from / to email addresses to use for sending the email.
+Before running, you need to edit the credentials.js file to include an SMTP host, the login and password for that host, and the from / to email addresses to use for sending the email. 
 
 Once that's done, run
 ```
@@ -33,7 +33,7 @@ If all goes well, you should get a confirmation like this:
 Email sent: 250 2.6.0 <string@exampleemail.com> [data about SMTP server] 8262 bytes in 0.471, 17.123 KB/sec Queued mail for delivery
 ```
 
-Finally, edit your crontab file to make this script run at the beginning of each month.
+Finally, edit your crontab file to make this run automagically at the beginning of each month!
 ```
 $ vi /./etc/crontab
 
