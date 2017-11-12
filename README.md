@@ -35,7 +35,7 @@ Email sent: 250 2.6.0 <string@exampleemail.com> [data about SMTP server] 8262 by
 
 Finally, edit your crontab file to make this run automagically at the beginning of each month!
 ```
-$ vi /./etc/crontab
+$ sudo vi /./etc/crontab
 
 # Add the below line just before the last hashtag of the file - sets it to run at 11:52am on the 2nd of every month:
 52 11   2 * *   [your username] cd ~/powerpath/ && node server.js
