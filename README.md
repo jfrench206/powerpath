@@ -3,7 +3,7 @@ If you want to automate your astrology...this is a simple node.js web scraper th
 
 I based it on a Scotch.io web scraper example so I could learn node.js (and jQuery!)
 
-It uses Cheerio (basically jQuery) to find the "Dates and Time Frames" section on the Power Path site, extracts and formats the data and sends it via email.
+It does some date calculation to determine the proper URL, then traverses the DOM to locate the "Dates and Time Frames" section, extracts and formats the data and sends it via email.
 
 ### Prerequisites
 * Node.js - [click here for installation instructions](https://nodejs.org/en/download/package-manager/)

@@ -48,19 +48,26 @@ function doScrape(){ // does some date calculations, makes HTTP request and pars
 // configures and sends email - references credentials.js file for user auth and host
 function sendMail(body, month, year){
 	var transporter = nodemailer.createTransport({
-		secure: false,
+		secure: true,
 		host: creds.host,
  		auth: {
-	 			user: creds.user,
-	 			pass: creds.pass
-		}
+        	type: creds.type
+        	clientId: creds.clientId
+        	clientSecret: creds.clientSecret
+   		}
 	});
 
 	var mailOptions = {
-		from: creds.from,
-		to: creds.to,
+		from: creds.user,
+		to: creds.user,
 		subject: month + " " + year + ': Dates and Time Frames',
 		html: body
+		auth: {
+	        user: creds.user,
+	        refreshToken: creds.refreshToken
+	        accessToken: creds.accessToken
+	        expires: 1484314697598
+		}
 	};
 
 // actually send the email

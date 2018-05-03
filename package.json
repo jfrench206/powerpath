@@ -1,12 +1,12 @@
 {
-  "name"		: "powerpath",
-  "version"		: "1.0.0",
-  "description"	: "Scrape monthly horoscopes and email them.",
-  "main"		: "server.js",
-  "author"		: "Jesse French",
+  "name": "powerpath",
+  "version": "1.0.0",
+  "description": "Scrape monthly horoscopes and email them.",
+  "main": "server.js",
+  "author": "Jesse French",
   "dependencies": {
-  	"request"	: "latest",
-  	"cheerio" 	: "latest",
-    "nodemailer" : "latest"
+    "request": "latest",
+    "cheerio": "latest",
+    "nodemailer": "latest"
   }
 }
