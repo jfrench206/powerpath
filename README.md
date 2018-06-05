@@ -1,5 +1,5 @@
 # Powerpath
-If you want to automate your astrology...this is a simple node.js web scraper that can be invoked from command line. I subscribe to the Power Path email list, but I got sick of following the monthly links to the website and manually copy-pasting the part I was interested in :D
+If you want to automate your astrology...this is a simple node.js web scraper that can be invoked from command line. I subscribe to [The Power Path](https://thepowerpath.com/) monthly horoscope, but I got sick of following the link to the website and manually copy-pasting the part I was interested in every month :P
 
 This project was based on a Scotch.io web scraper example so I could start learning Node.js and jQuery.
 
