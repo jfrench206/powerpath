@@ -13,12 +13,12 @@ Features:
 * Node package manager (npm)
 * An SMTP mail server that you have access to (for sending mail) - see below
 
-### Installing
+### Install
 ```
 git clone https://github.com/jfrench206/powerpath/ && npm install
 ```
 
-### Running
+### Run
 
 This project uses Mailgun for sending email, because it's way easier than messing with Gmail security. Sign up for a free account [here](https://mailgun.com), then add folks you want to send email to [here](https://app.mailgun.com/app/account/authorized).
 
