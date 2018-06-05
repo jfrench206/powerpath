@@ -1,47 +1,42 @@
 # Powerpath
-If you want to automate your astrology...this is a simple node.js web scraper that can be invoked from command line to get monthly horoscope data from The Power Path. 
-I based this on a Scotch.io web scraper example so I could start learning Node.js and jQuery.
+If you want to automate your astrology...this is a simple node.js web scraper that can be invoked from command line. I subscribe to the Power Path email list, but I got sick of following the monthly links to the website and manually copy-pasting the part I was interested in :D
+
+This project was based on a Scotch.io web scraper example so I could start learning Node.js and jQuery.
 
 Features:
 * Date calculation to determine the proper URL
 * Traverses the DOM to locate the "Dates and Time Frames" section
-* Extracts and formats the data & sends via email
+* Extracts and formats the data & sends via Mailgun
 
 ### Prerequisites
 * Node.js - [click here for installation instructions](https://nodejs.org/en/download/package-manager/)
 * Node package manager (npm)
-* An SMTP mail server that you have access to (for sending mail) - I use [Mailgun](https://mailgun.com), it's free! 
+* An SMTP mail server that you have access to (for sending mail) - see below
 
 ### Installing
-From your local directory where you want to install, run:
-
 ```
-$ git clone https://github.com/jfrench206/powerpath/ && npm install
+git clone https://github.com/jfrench206/powerpath/ && npm install
 ```
 
 ### Running
 
-Before running, you need to edit the credentials.js file to include an SMTP host, the login and password for that host, and the from / to email addresses to use for sending the email. 
+This project uses Mailgun for sending email, because it's way easier than messing with Gmail security. Sign up for a free account [here](https://mailgun.com), then add folks you want to send email to [here](https://app.mailgun.com/app/account/authorized).
 
-Once that's done, run
+Next, copy your domain details into credentials.js: [follow this link](https://app.mailgun.com/app/domains) and click on your domain name (e.g. sandboxXYZ.mailgun.org). From the screen that follows, copy these values: "Default SMTP Login" goes in credentials.js "from", "API Key" goes in "apiKey", and the domain itself (in bold up top) goes in credentials.js "domain". Check the placeholder text in credentials.js if you get confused.
+
+Phew! Now you should be all set. Run the app using
+
 ```
 $ node server.js
 ```
 
 If all goes well, you should get a confirmation like this:
 ```
-Email sent: 250 2.6.0 <string@exampleemail.com> [data about SMTP server] 8262 bytes in 0.471, 17.123 KB/sec Queued mail for delivery
+{ id: '<timestamp@sandboxXYZ.mailgun.org>',
+  message: 'Queued. Thank you.' }
 ```
 
-Finally, edit your crontab file to make this run automagically at the beginning of each month!
-```
-$ sudo vi /./etc/crontab
-
-# Add the below line just before the last hashtag of the file - sets it to run at 11:52am on the 2nd of every month:
-52 11   2 * *   [your username] cd ~/powerpath/ && node server.js
-```
-
-Note: I have yet to test the cron job for proper function - we'll see on Dec 2nd!
+Woohoo! Next up is to automate the script each month using a cron job or similar. Stay tuned...
 
 ## Authors
 
@@ -50,4 +45,4 @@ Note: I have yet to test the cron job for proper function - we'll see on Dec 2nd
 ## Acknowledgments
 
 * Hat tip to [kukicado](https://github.com/kukicado) for the "Scraping the the Web with Node.js" tutorial on Scotch.io, which this project is based on.
-* Thanks to [bbugh](https://github.com/bbugh) for his coaching and guidance
+* Thanks to [bbugh](https://github.com/bbugh) for coaching and guidance
