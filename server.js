@@ -1,18 +1,17 @@
 // original example code from https://scotch.io/tutorials/scraping-the-web-with-node-js
 // modified by Jesse French
 
-var creds = require('./credentials.js'); // email username, password, etc stored in separate file
+var creds = require('./credentials.js');
 var request = require('request');
 var cheerio = require('cheerio');
-// var nodemailer = require('nodemailer');
-var mailgun = require('mailgun-js')({apiKey: creds.key, domain: creds.domain});
+var mailgun = require('mailgun-js')({apiKey: creds.apiKey, domain: creds.domain});
 
 // message while other functions execute
 console.log("Waiting for email to send...");
 
 doScrape();
 
-function doScrape(){ // does some date calculations, makes HTTP request and parses data. Then calls sendMail() probably cause I'm a noob
+function doScrape(){ // does some date calculations, makes HTTP request and parses data
 
 	//variables for use in the http GET and the email subject
 	var today = new Date();
@@ -47,13 +46,13 @@ function sendMail(body, month, year){
 	var data = {
 	  from: creds.from,
 	  to: creds.to,
-	  subject: `${thisMonth} ${thisYear}: Dates and Time Frames`,
-	  text: body
+	  subject: `${month} ${year}: Dates and Time Frames`,
+	  html: body
 	};
 
 
-	mailgun.messages().send(data, function (error, abody) {
-  		console.log(abody);
+	mailgun.messages().send(data, function (error, msg) {
+  		console.log(msg);
 	});
 };
 

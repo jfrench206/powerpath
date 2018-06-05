@@ -1,9 +1,6 @@
 module.exports = {
-  host: "smtp.example.com",
-  user: 'me@domain.com',
-  pass: 'password',
-  from: 'me@domain.com',
-  to: 'you@domain.com',
-  key: 'mailgun-api-key',
-  domain: 'www.mydomain.com'
+  from: 'postmaster@sandboxXXXXXXXXX.mailgun.org',
+  to: 'recipient@domain.com',
+  apiKey: 'XXXXXXXXXXXXxx',
+  domain: 'sandboxXXXXXXXXXX.mailgun.org'
 };
