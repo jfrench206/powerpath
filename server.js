@@ -1,14 +1,11 @@
 // original example code from https://scotch.io/tutorials/scraping-the-web-with-node-js
 // modified by Jesse French
-//
-// This code scrapes the Power Path website, parses to extract the Dates and Time Frames weekly breakdown,
-// and sends it in an email.
 
-
+var creds = require('./credentials.js'); // email username, password, etc stored in separate file
 var request = require('request');
 var cheerio = require('cheerio');
-var nodemailer = require('nodemailer');
-var creds = require('./credentials.js'); // email username, password, etc stored in separate file
+// var nodemailer = require('nodemailer');
+var mailgun = require('mailgun-js')({apiKey: creds.key, domain: creds.domain});
 
 // message while other functions execute
 console.log("Waiting for email to send...");
@@ -45,38 +42,18 @@ function doScrape(){ // does some date calculations, makes HTTP request and pars
 	});
 };
 
-// configures and sends email - references credentials.js file for user auth and host
+// configure and send email
 function sendMail(body, month, year){
-	var transporter = nodemailer.createTransport({
-		secure: true,
-		host: creds.host,
- 		auth: {
-        	type: creds.type
-        	clientId: creds.clientId
-        	clientSecret: creds.clientSecret
-   		}
-	});
-
-	var mailOptions = {
-		from: creds.user,
-		to: creds.user,
-		subject: month + " " + year + ': Dates and Time Frames',
-		html: body
-		auth: {
-	        user: creds.user,
-	        refreshToken: creds.refreshToken
-	        accessToken: creds.accessToken
-	        expires: 1484314697598
-		}
+	var data = {
+	  from: creds.from,
+	  to: creds.to,
+	  subject: `${thisMonth} ${thisYear}: Dates and Time Frames`,
+	  text: body
 	};
 
-// actually send the email
-	transporter.sendMail(mailOptions, function(error, info){
-			if (error) {
- 				console.log(error);
-			} else {
-   			console.log('Email sent: ' + info.response);
-  		};
+
+	mailgun.messages().send(data, function (error, abody) {
+  		console.log(abody);
 	});
 };
 

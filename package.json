@@ -5,8 +5,9 @@
   "main": "server.js",
   "author": "Jesse French",
   "dependencies": {
-    "request": "latest",
     "cheerio": "latest",
-    "nodemailer": "latest"
+    "mailgun-js": "^0.18.0",
+    "nodemailer": "latest",
+    "request": "latest"
   }
 }

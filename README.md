@@ -1,14 +1,16 @@
 # Powerpath
 If you want to automate your astrology...this is a simple node.js web scraper that can be invoked from command line to get monthly horoscope data from The Power Path. 
+I based this on a Scotch.io web scraper example so I could start learning Node.js and jQuery.
 
-I based it on a Scotch.io web scraper example so I could learn node.js (and jQuery!)
-
-It does some date calculation to determine the proper URL, then traverses the DOM to locate the "Dates and Time Frames" section, extracts and formats the data and sends it via email.
+Features:
+* Date calculation to determine the proper URL
+* Traverses the DOM to locate the "Dates and Time Frames" section
+* Extracts and formats the data & sends via email
 
 ### Prerequisites
 * Node.js - [click here for installation instructions](https://nodejs.org/en/download/package-manager/)
 * Node package manager (npm)
-* An SMTP mail server that you have access to (for sending mail)
+* An SMTP mail server that you have access to (for sending mail) - I use [Mailgun](https://mailgun.com), it's free! 
 
 ### Installing
 From your local directory where you want to install, run:
@@ -16,8 +18,6 @@ From your local directory where you want to install, run:
 ```
 $ git clone https://github.com/jfrench206/powerpath/ && npm install
 ```
-
-Npm should automatically install dependencies, based on the included package.json file.
 
 ### Running
 

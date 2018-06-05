@@ -3,5 +3,7 @@ module.exports = {
   user: 'me@domain.com',
   pass: 'password',
   from: 'me@domain.com',
-  to: 'someone@domain.com'
+  to: 'you@domain.com',
+  key: 'mailgun-api-key',
+  domain: 'www.mydomain.com'
 };
