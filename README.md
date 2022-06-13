@@ -20,9 +20,19 @@ git clone https://github.com/jfrench206/powerpath/ && npm install
 
 ### Run
 
-This project uses Mailgun for sending email, because it's way easier than messing with Gmail security. Sign up for a free account [here](https://mailgun.com), then add folks you want to send email to [here](https://app.mailgun.com/app/account/authorized).
+This project uses Mailgun for sending email, because it's way easier than messing with Gmail security. 
 
-Next, copy your domain details into credentials.js: [follow this link](https://app.mailgun.com/app/domains) and click on your domain name (e.g. sandboxXYZ.mailgun.org). From the screen that follows, copy these values: "Default SMTP Login" goes in credentials.js "from", "API Key" goes in "apiKey", and the domain itself (in bold up top) goes in credentials.js "domain". Check the placeholder text in credentials.js if you get confused.
+#### Mailgun setup
+1. Sign up for a free account [here](https://mailgun.com).
+2. Add at least one email recipient [here](https://app.mailgun.com/app/account/authorized).
+
+#### Edit the credentials.js file
+1. Open the credentials.js file (found in your local /powerpath directory) in a text editor.
+2. [Follow this link](https://app.mailgun.com/app/domains) and click on your domain name (e.g. sandboxXYZ.mailgun.org). 
+3. Select "API" from the screen that follows, and copy the API key. Paste it into the "apiKey" section of the credentials.js file.
+4. Go back to Mailgun, hit the back button, and select the "SMTP" section. Copy these values: "Username" into credentials.js "from" section...
+5. ...and the part after the @ sign of "Username" into the credentials.js "domain". 
+6. Finally, enter the same recipient address that you added in step 2 of "Mailgun setup" into the "to" field.
 
 Phew! Now you should be all set. Run the app using
 
