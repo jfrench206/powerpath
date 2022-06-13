@@ -32,7 +32,7 @@ This project uses Mailgun for sending email, because it's way easier than messin
 3. Select "API" from the screen that follows, and copy the API key. Paste it into the "apiKey" section of the credentials.js file.
 4. Go back to Mailgun, hit the back button, and select the "SMTP" section. Copy these values: "Username" into credentials.js "from" section...
 5. ...and the part after the @ sign of "Username" into the credentials.js "domain". 
-6. Enter the same email address that you added in step 2 to the "to" field.
+6. Finally, enter the same recipient address that you added in step 2 of "Mailgun setup" into the "to" field.
 
 Phew! Now you should be all set. Run the app using
 
