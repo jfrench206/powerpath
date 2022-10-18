@@ -6,7 +6,7 @@
   "author": "Jesse French",
   "dependencies": {
     "cheerio": "latest",
-    "mailgun-js": "^0.18.0",
+    "mailgun-js": "^0.22.0",
     "nodemailer": "latest",
     "request": "latest"
   }
